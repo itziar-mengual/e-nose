@@ -14,7 +14,7 @@ This project focuses on automating the data collection process of an electronic 
 - `src/`: Contains scripts for controlling pumps and electrovalves.
 - `data/`: Folder for storing collected data samples.
 - `docs/`: Documentation related to the setup, hardware, and data collection procedures.
-- `notebooks/`: Jupyter notebooks for data analysis and visualization.
+- `notebooks/`: Python notebooks for data analysis and visualization.
 
 ## Requirements
 - Python 3.x
