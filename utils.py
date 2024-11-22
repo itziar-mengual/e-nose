@@ -3,13 +3,13 @@ from config import board, pins
 from process import board
 import time
 
-def sensor_select(board, combination):
+def sensor_select(combination):
     """Select sensor using digital pins S0, S1, S2."""
     pins['S0'].write(combination[0])
     pins['S1'].write(combination[1])
     pins['S2'].write(combination[2])
 
-def sensor_acquire_mean(board, pin_name, interval):
+def sensor_acquire_mean(pin_name, interval):
     """Acquire mean value from the specified sensor pin over an interval."""
     if pin_name not in pins:
         raise ValueError(f"Pin {pin_name} not configured.")

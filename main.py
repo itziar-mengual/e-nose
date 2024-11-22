@@ -3,20 +3,15 @@ from process import setup_pins, clean_process, sample_process, board
 from config import CLEANING_DURATION, SAMPLING_DURATION
 
 if __name__ == "__main__":
-    try:
-        # Setup the Arduino pins
-        setup_pins()
+    # Set up the Arduino pins
+    setup_pins()
 
-        # Perform cleaning process
-        clean_process(CLEANING_DURATION)
+    # Perform cleaning process
+    clean_process(CLEANING_DURATION)
 
-        # Perform sampling process
-        sample_process(SAMPLING_DURATION)
+    # Perform sampling process
+    #sample_process(SAMPLING_DURATION)
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-    finally:
-        # Ensure the Arduino connection is properly closed
-        board.exit()
-        print("Disconnected from Arduino.")
+    # Ensure the Arduino connection is properly closed
+    board.exit()
+    print("Disconnected from Arduino.")

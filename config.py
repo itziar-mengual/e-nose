@@ -1,20 +1,15 @@
 from pyfirmata import Arduino
 
-# Arduino port configuration
-ARDUINO_PORT = "/dev/cu.usbmodem14101"
+# Arduino port configuration (ls /dev/tty.*)
+ARDUINO_PORT = "/dev/cu.usbmodem14201"
 BAUD_RATE = 9600
 
 # Initialize Arduino board
 board = Arduino(ARDUINO_PORT)
 
-# Pin configuration
-AIR_VALVE_PIN = 'D13'
-PUMP_PIN = 'D7'
-SAMPLE_VALVE_PIN = 'D6'
-
 # Timing configuration (in seconds)
-CLEANING_DURATION = 120  # Duration for the cleaning process
-SAMPLING_DURATION = 50  # Duration for the sampling process
+CLEANING_DURATION = 10  # Duration for the cleaning process
+SAMPLING_DURATION = 5  # Duration for the sampling process
 
 # Sensor combination settings
 COMB = [
