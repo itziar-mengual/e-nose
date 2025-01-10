@@ -10,7 +10,7 @@ if __name__ == "__main__":
     clean_process(CLEANING_DURATION)
 
     # Perform sampling process
-    #sample_process(SAMPLING_DURATION)
+    sample_process(SAMPLING_DURATION)
 
     # Ensure the Arduino connection is properly closed
     board.exit()
