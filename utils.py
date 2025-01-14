@@ -23,12 +23,10 @@ def sensor_acquire_mean(pin_name, interval):
 
     sensor_pin = pins[pin_name]
     readings = []
-    print(f"Starting sensor acquisition for pin: {pin_name}, interval: {interval}")
 
     for i in range(interval):
         try:
             reading = sensor_pin.read()
-            print(f"Reading {i + 1}/{interval}: {reading}")
             readings.append(reading)
         except Exception as e:
             print(f"Error during read: {e}")
