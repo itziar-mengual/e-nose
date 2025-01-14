@@ -8,8 +8,7 @@ if __name__ == "__main__":
 
     # Perform cleaning process
     clean_process(CLEANING_DURATION)
-    print(f"OUT1 read: {pins['OUT1'].read()}")
-    print(f"OUT2 read: {pins['OUT2'].read()}")
+
     # Perform sampling process
     sample_process(SAMPLING_DURATION)
 

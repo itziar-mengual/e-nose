@@ -3,7 +3,6 @@ from config import board, pins
 from process import board
 import time
 
-
 def sensor_select(combination):
     """Select sensor using digital pins S0, S1, S2."""
     print(f"Selecting sensor with combination: {combination}")
@@ -14,7 +13,6 @@ def sensor_select(combination):
     except Exception as e:
         print(f"Error in sensor_select: {e}")
         raise
-
 
 def sensor_acquire_mean(pin_name, interval):
     """Acquire mean value from the specified sensor pin over an interval."""
