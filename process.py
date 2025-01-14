@@ -1,5 +1,5 @@
 import time
-import csv
+import csv, os
 from datetime import datetime
 from config import board, pins, COMB, DATA_FILE
 from utils import sensor_select, sensor_acquire_mean
@@ -18,6 +18,7 @@ def setup_pins():
         print("Set up done")
 
 def write_csv_header(file_path):
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
     """Initialize the CSV file with headers."""
     with open(file_path, mode='w', newline='') as file:
         writer = csv.writer(file)
@@ -26,8 +27,8 @@ def write_csv_header(file_path):
 
         # Define the column names directly
         sensor_labels = [
-            'U1', 'U9', 'U2', 'U10', 'U3', 'U10', 'U4', 'U11',
-            'U5', 'U12', 'U6', 'U13', 'U7', 'U14', 'U8', 'U15'
+            'U1', 'U9', 'U2', 'U10', 'U3', 'U11', 'U4', 'U12',
+            'U5', 'U13', 'U6', 'U14', 'U7', 'U15', 'U8', 'U16'
         ]
 
         # Add both A1 and A2 data columns for each sensor label
@@ -41,6 +42,39 @@ def save_data_to_csv(sensor_data):
     with open(DATA_FILE, mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(sensor_data)
+
+def rearrange_csv_columns(file):
+    """
+    Rearranges the columns of an existing CSV file and saves the result to a new file.
+
+    Args:
+        file (str): Path to the input and output CSV file.
+    """
+    column_order = ['Timestamp'] + [f'U{i}' for i in range(1, 17)]
+    try:
+        # Read the input CSV file
+        with open(file, mode='r', newline='') as infile:
+            reader = csv.DictReader(infile)
+            data = list(reader)  # Load all rows into memory
+
+            # Validate that all desired columns exist in the file
+            missing_columns = [col for col in column_order if col not in reader.fieldnames]
+            if missing_columns:
+                raise ValueError(f"Missing columns in the input file: {missing_columns}")
+
+            # Rearrange columns in the specified order
+            with open(file, mode='w', newline='') as outfile:
+                writer = csv.DictWriter(outfile, fieldnames=column_order)
+                writer.writeheader()  # Write the new header
+                for row in data:
+                    # Write rows in the new column order
+                    writer.writerow({col: row.get(col, 'N/A') for col in column_order})
+
+        print(f"CSV columns rearranged and saved to '{file}'.")
+
+    except Exception as e:
+        print(f"Error processing the CSV file: {e}")
+
 
 def clean_process(duration):
     """Run the cleaning process."""
@@ -92,11 +126,12 @@ def sample_process(duration):
             # Save data to CSV
             save_data_to_csv(sensor_data)
             time.sleep(0)  # Adjust sampling frequency as needed
-
+        pins["pump"].write(1)
     except Exception as e:
         print(f"Error during sampling process: {e}")
 
     finally:
+        rearrange_csv_columns(DATA_FILE)
         # Stop the sampling process
         pins["air_valve"].write(0)
         pins["pump"].write(0)
