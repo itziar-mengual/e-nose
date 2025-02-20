@@ -1,11 +1,14 @@
-from pyfirmata import Arduino
+from pyfirmata import Arduino, util
 
 # Arduino port configuration (ls /dev/tty.*)
-ARDUINO_PORT = "/dev/cu.usbmodem14101"
+ARDUINO_PORT = "/dev/cu.usbmodem14201"
 BAUD_RATE = 9600
 
 # Initialize Arduino board
 board = Arduino(ARDUINO_PORT)
+
+it = util.Iterator(board)
+it.start()
 
 # Timing configuration (in seconds)
 CLEANING_DURATION = 5  # Duration for the cleaning process

@@ -1,9 +1,8 @@
 import time
 import csv, os
 from datetime import datetime
-from config import board, pins, COMB, DATA_FILE
+from config import pins, COMB, DATA_FILE
 from utils import sensor_select, sensor_acquire_mean
-from pyfirmata import INPUT, OUTPUT, PWM
 
 def setup_pins():
     # Set pin modes for the air valve, pump, and sample valve
@@ -120,8 +119,8 @@ def sample_process(duration):
                 sensor_select(comb)
                 sensor_value_a1 = sensor_acquire_mean('OUT1', 1)
                 sensor_value_a2 = sensor_acquire_mean('OUT2', 1)
-                sensor_data.append(sensor_value_a1 if sensor_value_a1 is not None else 'N/A')
-                sensor_data.append(sensor_value_a2 if sensor_value_a2 is not None else 'N/A')
+                sensor_data.append(sensor_value_a1)
+                sensor_data.append(sensor_value_a2)
 
             # Save data to CSV
             save_data_to_csv(sensor_data)

@@ -1,8 +1,10 @@
 # main.py
-from process import setup_pins, clean_process, sample_process, board
-from config import CLEANING_DURATION, SAMPLING_DURATION, pins
+from process import setup_pins, clean_process, sample_process
+from config import CLEANING_DURATION, SAMPLING_DURATION, board, pins
+import time
 
 if __name__ == "__main__":
+
     # Set up the Arduino pins
     setup_pins()
 
@@ -13,5 +15,5 @@ if __name__ == "__main__":
     sample_process(SAMPLING_DURATION)
 
     # Ensure the Arduino connection is properly closed
-    board.exit()
+    #board.exit()
     print("Disconnected from Arduino.")
