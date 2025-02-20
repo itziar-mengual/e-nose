@@ -11,6 +11,9 @@ board = Arduino(ARDUINO_PORT)
 CLEANING_DURATION = 5  # Duration for the cleaning process
 SAMPLING_DURATION = 5  # Duration for the sampling process
 
+# File paths
+DATA_FILE = "data/data.csv"
+
 # Sensor combination settings
 COMB = [
     [0, 0, 0],  # U1, U9
@@ -35,5 +38,3 @@ pins = {
     "sample_valve": board.get_pin('d:6:o'), # Digital pin 6 (sample valve)
     "temp_sensor": board.get_pin('d:5:i')   # Digital pin 5 (temperature sensor)
 }
-# File paths
-DATA_FILE = "data/data.csv"

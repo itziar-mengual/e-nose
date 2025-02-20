@@ -1,6 +1,5 @@
 # utils.py
-from config import board, pins
-from process import board
+from config import pins
 import time
 
 def sensor_select(combination):
