@@ -1,6 +1,6 @@
 # main.py
 from hardware_control import setup_pins, clean_process, sample_process, vacuum_process
-from config import CLEANING_DURATION, SAMPLING_DURATION, VACUUM_DURATION
+from config import CLEANING_DURATION, SAMPLING_DURATION, VACUUM_DURATION, board
 
 if __name__ == "__main__":
 
@@ -17,5 +17,5 @@ if __name__ == "__main__":
     sample_process(SAMPLING_DURATION)
 
     # Ensure the Arduino connection is properly closed
-    #board.exit()
+    board.exit()
     print("Disconnected from Arduino.")
