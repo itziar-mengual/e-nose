@@ -63,6 +63,12 @@ The system connects to an Arduino board via USB using the `pyfirmata` Python lib
 
 ### Prerequisites
 
+## Project Structure
+- `src/`: Contains scripts for controlling pumps and electrovalves.
+- `data/`: Folder for storing collected data samples.
+- `docs/`: Documentation related to the setup, hardware, and data collection procedures.
+- `notebooks/`: Python notebooks for data analysis and visualization.
+
 - Python 3.x
 - `pyfirmata` library
 - Arduino IDE (for initial board setup, if needed)
